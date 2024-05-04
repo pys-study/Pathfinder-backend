@@ -32,7 +32,7 @@ public class PinsServiceImpl implements PinsService {
     @Override
     public List<Pins> savePins(Long userId, List<PinsDto> pinsDtos) {
 
-        // 회원 정보가 없으면 null
+        // 회원 정보가 없으면 null 반환
         if (userRepository.findById(userId).isEmpty())
             return null;
 
@@ -49,7 +49,7 @@ public class PinsServiceImpl implements PinsService {
 
     @Override
     public List<Pins> deletePins(Long userId, List<Pins> pins) {
-        // 회원 정보가 없으면 null
+        // 회원 정보가 없으면 null 반환
         if (userRepository.findById(userId).isEmpty())
             return null;
 
@@ -60,7 +60,7 @@ public class PinsServiceImpl implements PinsService {
         for(Pins pin : pins){
 
             // 자신의 핀이 아니면 삭제하지 않음
-            if(!Objects.equals(pin.getUser().getUserId(), user.getUserId()))
+            if(pin.getUser() != user)
                 continue;
 
             pinsRepository.delete(pin);
@@ -68,6 +68,7 @@ public class PinsServiceImpl implements PinsService {
 
         }
 
+        log.info(Objects.requireNonNull(deletedPins).toString());
         return deletedPins; // 삭제된 핀 반환
     }
 }

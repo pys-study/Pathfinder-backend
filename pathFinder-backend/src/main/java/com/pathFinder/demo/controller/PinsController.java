@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping("/pins")
 public class PinsController {
 
-    private final PinsRepository pinsRepository;
     private final PinsService pinsService;
 
     @GetMapping("/get")
