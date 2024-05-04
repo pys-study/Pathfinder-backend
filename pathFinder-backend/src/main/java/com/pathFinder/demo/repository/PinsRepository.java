@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PinsRepository extends JpaRepository<Pins, Long> {
-    List<Pins> findByUser_Userid(Long userId);
+    List<Pins> findByUser_UserId(Long userId);
 }

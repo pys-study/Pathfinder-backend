@@ -26,7 +26,7 @@ public class PinsServiceImpl implements PinsService {
     @Override
     public List<Pins> getPins(Long userId) {
         // userId에 해당하는 회원 핀들을 조회
-        return pinsRepository.findByUser_Userid(userId);
+        return pinsRepository.findByUser_UserId(userId);
     }
 
     @Override
