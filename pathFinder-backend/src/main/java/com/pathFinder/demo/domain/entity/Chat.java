@@ -29,4 +29,6 @@ public class Chat {
 
     private LocalDate date;
 
+    private boolean isUserChat;
+
 }
