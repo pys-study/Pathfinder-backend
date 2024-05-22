@@ -20,22 +20,22 @@ public class PinsController {
 
     private final PinsService pinsService;
 
-    @GetMapping("/get")
+    @GetMapping("/get/{userId}")
     @ResponseBody
-    public List<Pins> getPins(@SessionAttribute(name = "userId", required = false) Long userId) {
+    public List<Pins> getPins(@PathVariable Long userId) {
         return pinsService.getPins(userId);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add/{userId}")
     @ResponseBody
-    public List<Pins> addPins(@SessionAttribute(name = "userId", required = false) Long userId,
+    public List<Pins> addPins(@PathVariable Long userId,
                               @ModelAttribute List<PinsDto> pinsDtos) {
         return pinsService.savePins(userId, pinsDtos);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{userId}")
     @ResponseBody
-    public List<Pins> deletePins(@SessionAttribute(name = "userId", required = false) Long userId,
+    public List<Pins> deletePins(@PathVariable Long userId,
                                  @ModelAttribute List<Pins> pins){
         return pinsService.deletePins(userId, pins);
     }

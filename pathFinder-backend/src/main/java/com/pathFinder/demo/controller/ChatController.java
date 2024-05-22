@@ -18,16 +18,16 @@ public class ChatController {
 
     private final ChatService chatService;
 
-    @GetMapping("/get/{chattingRoomId}")
+    @GetMapping("/get/{chattingRoomId}/{userId}")
     @ResponseBody
-    public List<Chat> getChat(@SessionAttribute(name = "userId", required = false) Long userId,
+    public List<Chat> getChat(@PathVariable Long userId,
                               @PathVariable(value = "chattingRoomId") Long chattingRoomId) {
         return chatService.getChat(userId, chattingRoomId);
     }
 
-    @PostMapping("/add/{chattingRoomId}")
+    @PostMapping("/add/{chattingRoomId}/{userId}")
     @ResponseBody
-    public Chat addChat(@SessionAttribute(name = "userId", required = false) Long userId,
+    public Chat addChat(@PathVariable Long userId,
                         @PathVariable(value = "chattingRoomId") Long chattingRoomId,
                         @ModelAttribute ChatDto chatDto) {
         return chatService.saveChat(userId, chattingRoomId, chatDto);

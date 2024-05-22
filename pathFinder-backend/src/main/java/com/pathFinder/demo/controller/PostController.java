@@ -24,9 +24,9 @@ public class PostController {
         return postService.getPostLists();
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create/{userId}")
     @ResponseBody
-    public Post createPost(@SessionAttribute(name = "userId", required = false) Long userId,
+    public Post createPost(@PathVariable Long userId,
                            @ModelAttribute PostRequestDto postRequestDto) {
         return postService.createPost(userId, postRequestDto);
     }
@@ -38,10 +38,10 @@ public class PostController {
         return postService.readPost(postId);
     }
 
-    @PutMapping("/{postId}")
+    @PutMapping("/{postId}/{userId}")
     @ResponseBody
-    public Post updatePost(@SessionAttribute(name = "userId", required = false) Long userId,
-                           @PathVariable long postId,
+    public Post updatePost(@PathVariable long postId,
+                           @PathVariable Long userId,
                            @ModelAttribute PostRequestDto postRequestDto) {
         return postService.updatePost(userId, postId, postRequestDto);
     }

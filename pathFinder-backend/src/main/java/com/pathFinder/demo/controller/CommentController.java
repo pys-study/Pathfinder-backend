@@ -24,17 +24,17 @@ public class CommentController {
         return commentService.getCommentList();
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create/{userId}")
     @ResponseBody
-    public Comment createComment(@SessionAttribute(name = "userId", required = false) Long userId,
+    public Comment createComment(@PathVariable Long userId,
                               Long postId,
                               @ModelAttribute CommentDto commentDto) {
         return commentService.createComment(userId, postId, commentDto);
     }
 
-    @PutMapping("/{commentId}")
+    @PutMapping("/{commentId}/{userId}")
     @ResponseBody
-    public Comment updatePost(@SessionAttribute(name = "userId", required = false) Long userId,
+    public Comment updatePost(@PathVariable Long userId,
                            long postId,
                            @PathVariable long commentId,
                            @ModelAttribute CommentDto commentDto) {
